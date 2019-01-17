@@ -2,15 +2,14 @@
   http://adventofcode.com/2017/day/1
 -}
 
-prompt x = do
-  putStrLn x
-  number <- getLine
-  return number
+import System.Environment
 
 main = do
-  number <- prompt "Input number: "
-  let num = read number :: Int
+  num <- getIntegerArg
   print $ snd (count num 0)
+
+getIntegerArg :: IO Integer
+getIntegerArg = fmap (read . head) getArgs
 
 countDigits :: (Integral a) => a -> a -> a
 countDigits num count
